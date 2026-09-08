@@ -1,0 +1,13 @@
+# Goal
+string command
+---
+# Result
+bool success
+string final_state
+float32 final_angle_deg
+float32 final_fz
+---
+# Feedback
+string current_state
+float32 angle_deg
+float32 fz

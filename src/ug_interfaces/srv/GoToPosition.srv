@@ -1,0 +1,7 @@
+string mode
+float32 target
+---
+bool success
+string message
+float32 final_angle_deg
+float32 final_opening_mm

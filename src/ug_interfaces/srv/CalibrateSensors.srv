@@ -1,0 +1,5 @@
+int32 num_samples
+float32 timeout_s
+---
+bool success
+string message
