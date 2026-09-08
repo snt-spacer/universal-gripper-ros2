@@ -14,6 +14,12 @@ The system integrates:
 * ROS 2 interfaces
 * Graphical user interface
 
+## Graphical User Interface
+
+The Universal Gripper is controlled and monitored through a PyQt5 graphical interface.
+
+![Universal Gripper GUI](docs/images/universal_gripper_gui.png)
+
 ## Repository Structure
 
 The repository is organized into three ROS 2 packages:
@@ -95,6 +101,39 @@ Launch the hardware interface and graphical user interface:
 ros2 launch ug_hardware ug_hardware.launch.py
 ```
 
+The launch sequence is:
+
+```text
+                    ros2 launch
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │  Hardware Interface │
+              └──────────┬──────────┘
+                         │
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+       CAN Bus        Motor         Tactile
+      Connection    Initialization    Sensors
+                         │              │
+                         │              ▼
+                         │       Automatic Calibration
+                         │              │
+                         └──────┬───────┘
+                                ▼
+                    ┌─────────────────────┐
+                    │   State Machine     │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │     Graphical UI    │
+                    └─────────────────────┘
+```
+
+The hardware interface initializes the CAN communication, motor controller, and tactile sensors. The tactile sensors are automatically calibrated during startup. Once the hardware is initialized, the gripper state machine starts and the graphical interface connects to the ROS 2 system for monitoring and control.
+
+
 The tactile sensors are calibrated automatically during hardware initialization.
 
 ## Configuration
@@ -105,7 +144,21 @@ Hardware and control parameters are defined in:
 src/ug_hardware/ug_hardware/config.py
 ```
 
-Before running the system, check the hardware configuration, especially the CAN interface and CAN device.
+The main parameters to check are:
+
+| Parameter              | Description                          | Example             |
+| ---------------------- | ------------------------------------ | ------------------- |
+| `CAN_INTERFACE`        | CAN interface type                   | `slcan`             |
+| `CAN_CHANNEL`          | CAN adapter device                   | `/dev/ttyACM0`      |
+| `CAN_BITRATE`          | CAN bus bitrate                      | `1000000`           |
+| `ANGLE_OPEN_DEG`       | Fully open position                  | `0.0`               |
+| `ANGLE_CLOSED_DEG`     | Fully closed position                | `221.5`             |
+| `TEXEL_IDS`            | XELA tactile sensor CAN IDs          | `[258, 274, 18, 2]` |
+| `SENSOR_CALIB_SAMPLES` | Samples used for startup calibration | `100`               |
+| `SM_LOOP_HZ`           | State machine update frequency       | `20.0`              |
+
+The tactile sensors are calibrated automatically during hardware initialization.
+
 
 ## Hardware
 
