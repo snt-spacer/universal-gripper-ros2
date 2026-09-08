@@ -20,8 +20,8 @@ setup(
     'numpy',
 ],
     zip_safe=True,
-    maintainer='josephpotr',
-    maintainer_email='josephpotr@example.com',
+    maintainer='Joseph Polania',
+    maintainer_email='joseph.polania@uni.lu',
     description='Hardware drivers and ROS 2 hardware interface for the Universal Gripper',
     license='Apache-2.0',
     extras_require={
