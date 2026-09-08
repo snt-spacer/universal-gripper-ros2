@@ -4,7 +4,7 @@
   <name>ug_hardware</name>
   <version>0.1.0</version>
   <description>Hardware drivers and ROS 2 hardware interface for the Universal Gripper</description>
-  <maintainer email="josephpotr@example.com">josephpotr</maintainer>
+  <maintainer email="joseph.polania@uni.lu">Joseph Polania</maintainer>
   <license>Apache-2.0</license>
 
   <depend>rclpy</depend>

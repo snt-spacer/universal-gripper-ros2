@@ -4,7 +4,7 @@
   <version>0.1.0</version>
   <description>PyQt5 graphical user interface for the Universal Gripper</description>
 
-  <maintainer email="josephpotr@example.com">josephpotr</maintainer>
+  <maintainer email="joseph.polania@uni.lu">Joseph Polania</maintainer>
 
   <license>Apache-2.0</license>
 
